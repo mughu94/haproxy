@@ -1,9 +1,6 @@
-# haproxy
-install haproxy centos 7/8
-
+```bash
 # Install required packages and HAProxy
 
-```bash
 sudo yum install gcc pcre-devel tar make -y
 
 wget http://www.haproxy.org/download/2.0/src/haproxy-2.0.7.tar.gz -O ~/haproxy.tar.gz
@@ -14,7 +11,6 @@ sudo make install
 
 # Create directories and files
 
-```bash
 sudo mkdir -p /etc/haproxy
 sudo mkdir -p /var/lib/haproxy 
 sudo touch /var/lib/haproxy/stats
@@ -29,53 +25,47 @@ sudo useradd -r haproxy
 
 # Verify HAProxy version
 
-```bash
 haproxy -v
 
 # Configure firewall
 
-```bash
 sudo firewall-cmd --permanent --zone=public --add-service=http
 sudo firewall-cmd --permanent --zone=public --add-port=8181/tcp
 sudo firewall-cmd --reload
 
 # Edit HAProxy configuration
 
-```bash
 sudo vi /etc/haproxy/haproxy.cfg
 
-## Now, paste your HAProxy configuration:
-
-```bash
-global
-   log /dev/log local0
-   log /dev/log local1 notice
-   chroot /var/lib/haproxy
-   stats timeout 30s
-   user haproxy
-   group haproxy
-   daemon
-
-defaults
-   log global
-   mode http
-   option httplog
-   option dontlognull
-   timeout connect 5000
-   timeout client 50000
-   timeout server 50000
-
-frontend http_front
-   bind *:80
-   stats uri /haproxy?stats
-   default_backend http_back
-
-backend http_back
-   balance roundrobin
-   server server_name1 SERVER_IP_1:80 check
-   server server_name2 SERVER_IP_2:80 check
+# Paste the HAProxy configuration here
+# global
+#    log /dev/log local0
+#    log /dev/log local1 notice
+#    chroot /var/lib/haproxy
+#    stats timeout 30s
+#    user haproxy
+#    group haproxy
+#    daemon
+# 
+# defaults
+#    log global
+#    mode http
+#    option httplog
+#    option dontlognull
+#    timeout connect 5000
+#    timeout client 50000
+#    timeout server 50000
+# 
+# frontend http_front
+#    bind *:80
+#    stats uri /haproxy?stats
+#    default_backend http_back
+# 
+# backend http_back
+#    balance roundrobin
+#    server server_name1 23.95.5.105:80 check
+#    server server_name2 23.95.50.110:80 check
 
 # Restart HAProxy
 
-```bash
 sudo systemctl restart haproxy
