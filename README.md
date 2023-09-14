@@ -75,3 +75,6 @@ backend http_back
 ```
 sudo systemctl restart haproxy
 ```
+
+> [!NOTE]
+> ALL DONE , now you can check haproxy status with visit your ip with the end of permalink **/haproxy?stats**
