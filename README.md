@@ -1,3 +1,5 @@
+# Haproxy has been TESTED and Working on Centos 7/8 By MUGHU
+
 # Install required packages and HAProxy
 ```
 sudo yum install gcc pcre-devel tar make -y
