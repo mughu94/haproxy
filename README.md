@@ -1,6 +1,9 @@
 # Haproxy has been TESTED and Working on Centos 7/8 By MUGHU
 
-# Install required packages and HAProxy
+> [!NOTE]
+> You can change the version with another version on the official website of haproxy https://www.haproxy.org/
+
+## Install required packages and HAProxy
 ```
 sudo yum install gcc pcre-devel tar make -y
 
@@ -10,7 +13,7 @@ cd ~/haproxy-2.0.7
 make TARGET=linux-glibc
 sudo make install
 ```
-# Create directories and files
+## Create directories and files
 ```
 sudo mkdir -p /etc/haproxy
 sudo mkdir -p /var/lib/haproxy 
@@ -24,21 +27,21 @@ sudo systemctl daemon-reload
 sudo chkconfig haproxy on
 sudo useradd -r haproxy
 ```
-# Verify HAProxy version
+## Verify HAProxy version
 ```
 haproxy -v
 ```
-# Configure firewall
+## Configure firewall
 ```
 sudo firewall-cmd --permanent --zone=public --add-service=http
 sudo firewall-cmd --permanent --zone=public --add-port=8181/tcp
 sudo firewall-cmd --reload
 ```
-# Edit HAProxy configuration
+## Edit HAProxy configuration
 ```
 sudo vi /etc/haproxy/haproxy.cfg
 ```
-# Paste the HAProxy configuration here
+## Paste the HAProxy configuration here
 ```
 global
    log /dev/log local0
@@ -68,7 +71,7 @@ backend http_back
    server server_name1 SERVER_IP_1:80 check
    server server_name2 SERVER_IP_2:80 check
 ```
-# Restart HAProxy
+## Restart HAProxy
 ```
 sudo systemctl restart haproxy
 ```
