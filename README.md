@@ -1,5 +1,5 @@
-# haproxy
-install haproxy centos 7/8
+```bash
+# Install required packages and HAProxy
 
 sudo yum install gcc pcre-devel tar make -y
 
@@ -9,6 +9,7 @@ cd ~/haproxy-2.0.7
 make TARGET=linux-glibc
 sudo make install
 
+# Create directories and files
 
 sudo mkdir -p /etc/haproxy
 sudo mkdir -p /var/lib/haproxy 
@@ -22,16 +23,22 @@ sudo systemctl daemon-reload
 sudo chkconfig haproxy on
 sudo useradd -r haproxy
 
+# Verify HAProxy version
+
 haproxy -v
+
+# Configure firewall
 
 sudo firewall-cmd --permanent --zone=public --add-service=http
 sudo firewall-cmd --permanent --zone=public --add-port=8181/tcp
 sudo firewall-cmd --reload
 
+# Edit HAProxy configuration
+
 sudo vi /etc/haproxy/haproxy.cfg
 
-## file /etc/haproxy/haproxy.cfg
-==============================================
+# Paste the HAProxy configuration here
+
 global
    log /dev/log local0
    log /dev/log local1 notice
@@ -57,9 +64,9 @@ frontend http_front
 
 backend http_back
    balance roundrobin
-   server server_name1 23.95.5.105:80 check
-   server server_name2 23.95.50.110:80 check
-===================================================
-## end file /etc/haproxy/haproxy.cfg
+   server server_name1 SERVER_IP_1:80 check
+   server server_name2 SERVER_IP_2:80 check
+
+# Restart HAProxy
 
 sudo systemctl restart haproxy
