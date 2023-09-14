@@ -1,6 +1,6 @@
 ## Haproxy has been TESTED and Working on Centos 7/8 By MUGHU
 
-> [!WARING]
+> [!WARNING]
 > This HAProxy configuration has been thoroughly tested and verified to work seamlessly on CentOS 7 and CentOS 8 by MUGHU. It ensures load balancing and high availability for web services by distributing incoming traffic across multiple backend > servers. The configuration includes the installation of essential packages, firewall setup, and detailed steps for setting up HAProxy.
 
 > By following these instructions, you can confidently deploy and manage HAProxy for your CentOS 7 or CentOS 8 system, providing efficient and reliable load balancing for your web applications. MUGHU has rigorously tested and documented this 
