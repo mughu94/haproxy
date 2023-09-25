@@ -13,9 +13,9 @@
 ```
 sudo yum install gcc pcre-devel tar make -y
 
-wget http://www.haproxy.org/download/2.0/src/haproxy-2.8.3.tar.gz -O ~/haproxy.tar.gz
+wget http://www.haproxy.org/download/2.4/src/haproxy-2.4.24.tar.gz -O ~/haproxy.tar.gz
 tar xzvf ~/haproxy.tar.gz -C ~/
-cd ~/haproxy-2.8.3
+cd ~/haproxy-2.4.24
 make TARGET=linux-glibc
 sudo make install
 ```
@@ -26,7 +26,7 @@ sudo mkdir -p /var/lib/haproxy
 sudo touch /var/lib/haproxy/stats
 
 sudo ln -s /usr/local/sbin/haproxy /usr/sbin/haproxy
-sudo cp ~/haproxy-2.8.3/examples/haproxy.init /etc/init.d/haproxy
+sudo cp ~/haproxy-2.4.24/examples/haproxy.init /etc/init.d/haproxy
 sudo chmod 755 /etc/init.d/haproxy
 sudo systemctl daemon-reload
 
